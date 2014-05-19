@@ -20,3 +20,19 @@ describe 'creating a restaurant' do
     expect(page).to have_content 'Mcdonalds'
   end
 end
+
+describe 'editing a restaurant' do
+  before  { Restaurant.create(name: 'KFC', address: 'an address')}
+
+  it 'saves the chnage to the restaurant' do
+    visit '/restaurants'
+    click_link 'Edit KFC'
+
+    fill_in 'Name', with: 'Kentucky Fried Chicken'
+    click_button 'Update Restaurant'
+
+
+    expect(current_path).to eq '/restaurants'
+    expect(page).to have_content 'Kentucky Fried Chicken'
+  end
+end
