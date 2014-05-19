@@ -24,7 +24,7 @@ end
 describe 'editing a restaurant' do
   before  { Restaurant.create(name: 'KFC', address: 'an address')}
 
-  it 'saves the chnage to the restaurant' do
+  it 'saves the change to the restaurant' do
     visit '/restaurants'
     click_link 'Edit KFC'
 
@@ -34,5 +34,17 @@ describe 'editing a restaurant' do
 
     expect(current_path).to eq '/restaurants'
     expect(page).to have_content 'Kentucky Fried Chicken'
+  end
+end
+
+describe 'deleting a restaurant' do
+  before  { Restaurant.create(name: 'KFC', address: 'an address')}
+
+  it 'removes the restaurant from the listing' do
+    visit '/restaurants'
+    click_link 'Delete KFC'
+
+    expect(page).not_to have_content 'KFC'
+    expect(page).to have_content 'Deleted successfully'
   end
 end
