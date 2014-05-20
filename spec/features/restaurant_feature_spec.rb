@@ -55,6 +55,16 @@ describe 'editing a restaurant' do
     expect(current_path).to eq '/restaurants'
     expect(page).to have_content 'Kentucky Fried Chicken'
   end
+
+  it 'with invalid data it shows an error' do
+   visit '/restaurants'
+  click_link 'Edit KFC'
+
+  fill_in 'Name', with: 'kfc'
+  click_button 'Update Restaurant'
+
+  expect(page).to have_content 'error'
+  end
 end
 
 describe 'deleting a restaurant' do
