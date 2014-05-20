@@ -10,7 +10,11 @@ describe 'restaurants index page' do
     it 'should have a link to add a new restaurant' do
       visit '/restaurants'
       expect(page).to have_link 'Add a new restaurant'
+      click_link('Add a new restaurant')
+      expect(current_path).to eq '/restaurants/new'
     end
+
+
   end
 end
 
