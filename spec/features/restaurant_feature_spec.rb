@@ -19,6 +19,7 @@ describe 'creating a restaurant' do
     visit '/restaurants/new'
     fill_in 'Name', with:'Mcdonalds'
     fill_in 'Address', with: 'somewhere'
+    fill_in 'Cuisine', with: 'burgers'
     click_button 'Create Restaurant'
 
     expect(current_path).to eq '/restaurants'
