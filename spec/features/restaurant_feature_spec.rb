@@ -25,10 +25,20 @@ describe 'creating a restaurant' do
     expect(current_path).to eq '/restaurants'
     expect(page).to have_content 'Mcdonalds'
   end
+
+  it 'raises an error if any of the fields are invalid' do
+    visit '/restaurants/new'
+    fill_in 'Name', with:''
+    fill_in 'Address', with: ''
+    fill_in 'Cuisine', with: ''
+    click_button 'Create Restaurant'
+
+    expect(page).to have_button 'Create Restaurant'
+  end
 end
 
 describe 'editing a restaurant' do
-  before  { Restaurant.create(name: 'KFC', address: 'an address')}
+  before  { Restaurant.create(name: 'KFC', address: 'an address', cuisine: 'chicken')}
 
   it 'saves the change to the restaurant' do
     visit '/restaurants'
@@ -44,7 +54,7 @@ describe 'editing a restaurant' do
 end
 
 describe 'deleting a restaurant' do
-  before  { Restaurant.create(name: 'KFC', address: 'an address')}
+  before  { Restaurant.create(name: 'KFC', address: 'an address',  cuisine: 'chicken')}
 
   it 'removes the restaurant from the listing' do
     visit '/restaurants'
