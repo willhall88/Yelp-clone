@@ -1,4 +1,5 @@
 class Restaurant < ActiveRecord::Base
   validates :name, :address, :cuisine,  presence: true
-  validates :name, length: { minimum: 3 }
+  validates :address, length: { minimum: 3 }
+  validates :name, format: { with: /\A[A-Z]/, message: 'must begin with a capital letter '}
 end
