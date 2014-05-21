@@ -8,6 +8,7 @@ $(document).ready(function() {
         var template = $('#review_template').html();
         var rendered = Mustache.render(template,response);
         siblingList.prepend(rendered);
+        console.log(response);
 
     }, 'json' );
   });

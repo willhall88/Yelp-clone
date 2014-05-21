@@ -15,7 +15,7 @@ describe 'writing reviews' do
     click_button 'Submit Review'
 
     expect(page).to have_content 'nice friendly atmosphere'
-    expect(page).to have_content '1 review'
+    
   end
 end
 
