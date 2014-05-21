@@ -20,8 +20,6 @@ describe Review do
 
       expect(review).to have(0).error_on(:rating)
     end
-
   end
-  
 end
 

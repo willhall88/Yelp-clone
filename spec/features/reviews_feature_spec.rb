@@ -19,6 +19,17 @@ describe 'writing reviews' do
     expect(page).to have_content 'nice friendly atmosphere'
     expect(page).to have_content '1 review'
   end
+end
 
-  
+describe 'averaging the reviews 'do
+  it 'shows the average review for the restaurant' do
+    restaurant = Restaurant.create(name: 'Nandos', address: 'an address', cuisine: 'chicken')
+    restaurant.reviews.create(comments: 'it was average', rating: '3')
+    restaurant.reviews.create(comments: 'it was good', rating: '4') 
+    visit '/restaurants'
+
+    expect(page).to have_content 'Average Review: 3.5'
+    
+  end
+
 end

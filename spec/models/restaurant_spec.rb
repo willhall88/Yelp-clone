@@ -36,4 +36,29 @@ describe 'restaurant' do
   it 'is not valid unless the name begins with an uppercase letter' do
     expect(Restaurant.new(name: 'nandos')).to have(1).error_on(:name)
   end
+
+  context "calculating average reviews" do
+    let(:restaurant) { Restaurant.create(name: 'KFC', address: 'somewhere', cuisine: 'food')}
+
+    it 'should return N/A when there are no reviews' do
+      expect(restaurant.average_rating).to eq('N/A')
+    end
+
+    it 'should return the score of one review' do
+      restaurant.reviews.create(comments: 'it was average', rating: '3')
+      expect(restaurant.average_rating).to eq 3
+    end
+
+    it 'should return the score of one review' do
+      restaurant.reviews.create(comments: 'it was average', rating: '3')
+      expect(restaurant.average_rating).to eq 3
+    end
+
+    it 'should return the average score of 2 reviews' do
+      restaurant.reviews.create(comments: 'it was average', rating: '3')
+      restaurant.reviews.create(comments: 'it was average', rating: '4')
+      expect(restaurant.average_rating).to eq 3.5
+    end
+
+  end
 end
