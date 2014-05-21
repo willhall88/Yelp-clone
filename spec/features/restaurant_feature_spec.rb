@@ -78,3 +78,6 @@ describe 'deleting a restaurant' do
     expect(page).to have_content 'Deleted successfully'
   end
 end
+
+
+
