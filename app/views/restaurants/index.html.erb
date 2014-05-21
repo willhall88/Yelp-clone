@@ -1,37 +1,52 @@
-<template id="review_template">
-  <li>
-    <strong>{{ rating }}</strong> - {{ comments }}
-  </li>
-</template>
+<!DOCTYPE html>
+<html>
+<head>
+
+  <title>Welp</title>
+</head>
+<body>
+  <template id="review_template">
+    <li>
+      <strong>{{ rating }}</strong> - {{ comments }}
+    </li>
+  </template>
 
 
-<%= link_to "Add a new restaurant", new_restaurant_path %>
+  <h1>Welp</h1>
+  <%= link_to "Add a new restaurant", new_restaurant_path %>
 
-<% if @restaurants.any? %>
-  <% @restaurants.all.each do |restaurant| %>
-    <div class='restaurant'
-      <h5><%= restaurant.name %></h5>
-      <%= link_to "Edit #{restaurant.name}", edit_restaurant_path(restaurant) %>
-      <%= link_to "Delete #{restaurant.name}", restaurant_path(restaurant), method: :delete, data: {confirm: 'you     sure?'} %>
-
-      <h3><%= pluralize restaurant.reviews.count, 'review' %></h3>
-      <h4>Average Rating: <%= star_rating(restaurant.average_rating)%></h4>
-      <%= form_for [restaurant, @review] do |f| %>
-      <%= f.label :comments %>
-      <%= f.text_area :comments %>
-      <%= f.label :rating %>
-      <%= f.select :rating, 1..5 %>
-      <%= f.submit 'Submit Review' %>
-      <% end %>
-      <ul>
-        <% restaurant.reviews.reverse.each do |review| %>
-          <li>
-            <strong><%= star_rating(review.rating) %></strong> - <%= review.comments%>
-          </li>
-        <%end%>
-      </ul>
-    </div>
+  <% if @restaurants.any? %>
+    <% @restaurants.all.each do |restaurant| %>
+      <div class='restaurant'>
+        <span class="name"><%= restaurant.name %> </span>   
+        <span class="cuisine"><%= restaurant.cuisine %></span>
+        <address class="address"><%= restaurant.address %></address>
+        <hr />
+        <div><%= link_to "Edit #{restaurant.name}", edit_restaurant_path(restaurant) %>
+        <%= link_to "Delete #{restaurant.name}", restaurant_path(restaurant), method: :delete, data: {confirm: 'you     sure?'} %>
+        </div>
+        <h3><%= pluralize restaurant.reviews.count, 'review' %></h3>
+        <h4>Average Rating: <%= star_rating(restaurant.average_rating) %>   <%= restaurant.average_rating %></h4>
+        <%= form_for [restaurant, @review] do |f| %>
+        <%= f.label :comments %>
+        <%= f.text_area :comments %>
+        <%= f.label :rating %>
+        <%= f.select :rating, 1..5 %>
+        <%= f.submit 'Submit Review' %>
+        <% end %>
+        <ul>
+          <% restaurant.reviews.reverse.each do |review| %>
+            <li>
+              <strong><%= star_rating(review.rating) %></strong> - <%= review.comments%>
+            </li>
+          <%end%>
+        </ul>
+      </div>
+    <% end %>
+  <% else %>
+    No restaurants yet
   <% end %>
-<% else %>
-  No restaurants yet
-<% end %>
+
+
+</body>
+</html>

@@ -1,7 +1,7 @@
 module ReviewsHelper
 
   def star_rating(value)
-    return value unless value.respond_to?(:round)
+    return unless value.respond_to?(:round)
       rounded = value.round
 
     full_stars = '★' * rounded
