@@ -1,3 +1,5 @@
 class Review < ActiveRecord::Base
   belongs_to :restaurant
-end
+
+  validates :rating, inclusion: { in: [*1..5]}
+end 

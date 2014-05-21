@@ -1,2 +1,19 @@
 require 'spec_helper'
 
+describe Review do 
+  context "validating the rating system" do
+ 
+    it 'should not have a rating more than 5'do
+      review = Review.new(comments: 'it was Awesome!', rating:10)
+
+      expect(review).to have(1).error_on(:rating)
+    end
+
+    xit 'should not have a rating less than 1' do
+
+    end
+
+  end
+  
+end
+
