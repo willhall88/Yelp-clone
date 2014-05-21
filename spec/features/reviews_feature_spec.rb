@@ -22,14 +22,24 @@ describe 'writing reviews' do
 end
 
 describe 'averaging the reviews 'do
+  before do
+    @restaurant = Restaurant.create(name: 'Nandos', address: 'an address', cuisine: 'chicken')
+    @restaurant.reviews.create(comments: 'it was average', rating: '3')
+    @restaurant.reviews.create(comments: 'it was good', rating: '4') 
+  end
+
   it 'shows the average review for the restaurant' do
-    restaurant = Restaurant.create(name: 'Nandos', address: 'an address', cuisine: 'chicken')
-    restaurant.reviews.create(comments: 'it was average', rating: '3')
-    restaurant.reviews.create(comments: 'it was good', rating: '4') 
     visit '/restaurants'
 
-    expect(page).to have_content 'Average Review: 3.5'
-    
+    expect(page).to have_content 'Average Review: 3.5'  
+  end
+
+  it 'shows the average review to one decimal' do
+    @restaurant.reviews.create(comments: 'it was good', rating: '4')
+    visit '/restaurants'
+
+    expect(page).to have_content 'Average Review: 3.7'  
+    expect(page).not_to have_content 'Average Review: 3.666'  
   end
 
 end
