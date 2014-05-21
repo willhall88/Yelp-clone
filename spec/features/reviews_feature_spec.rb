@@ -31,16 +31,34 @@ describe 'averaging the reviews 'do
   it 'shows the average review for the restaurant' do
     visit '/restaurants'
 
-    expect(page).to have_content 'Average Review: 3.5'  
+    expect(page).to have_content 'Average Rating: ★★★★☆'  
   end
 
   it 'shows the average review to one decimal' do
     @restaurant.reviews.create(rating: '4')
     visit '/restaurants'
 
-    expect(page).to have_content 'Average Review: 3.7'  
-    expect(page).not_to have_content 'Average Review: 3.666'  
+    expect(page).to have_content 'Average Rating: ★★★★☆'  
+    expect(page).not_to have_content 'Average Rating: 3.666'  
   end
 
+end
+
+describe 'star ratings' do
+  before do
+    @restaurant = Restaurant.create(name: 'Nandos', address: 'an address', cuisine: 'chicken')
+    @restaurant.reviews.create(rating: '4')
+    @restaurant.reviews.create(rating: '4')  
+  end
+
+  it 'shows the ratings as stars' do
+    visit '/restaurants'
+    expect(page).to have_content '★★★★☆'    
+  end
+
+  it 'shows the average ratings as stars' do
+    visit '/restaurants'
+    expect(page).to have_content 'Average Rating: ★★★★☆'    
+  end
 end
 

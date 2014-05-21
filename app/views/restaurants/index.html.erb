@@ -9,11 +9,11 @@
       <%= link_to "Review #{restaurant.name}", new_restaurant_review_path(restaurant) %>
 
       <h4><%= pluralize restaurant.reviews.count, 'review' %></h4>
-      <h5>Average Review: <%= restaurant.average_rating%></h5>
+      <h5>Average Rating: <%= star_rating(restaurant.average_rating)%></h5>
       <ul>
         <% restaurant.reviews.each do |review| %>
           <li>
-            <strong><%= review.rating %></strong> - <%= review.comments%>
+            <strong><%= star_rating(review.rating) %></strong> - <%= review.comments%>
           </li>
         <%end%>
       </ul>
