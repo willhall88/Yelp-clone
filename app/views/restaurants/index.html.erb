@@ -1,22 +1,28 @@
+<template id="review_template">
+  <li>
+     <strong>{{ rating }}</strong> - {{ comments }}
+  </li>
+ </template>
+
+
 <%= link_to "Add a new restaurant", new_restaurant_path %>
 
 <% if @restaurants.any? %>
   <% @restaurants.all.each do |restaurant| %>
-
-      <h2><%= restaurant.name %></h2>
+    <div class='restaurant'
+      <h5><%= restaurant.name %></h5>
       <%= link_to "Edit #{restaurant.name}", edit_restaurant_path(restaurant) %>
-      <%= link_to "Delete #{restaurant.name}", restaurant_path(restaurant), method: :delete, data: {confirm: 'Are you sure?'} %>
+      <%= link_to "Delete #{restaurant.name}", restaurant_path(restaurant), method: :delete, data: {confirm: 'you     sure?'} %>
 
-      <h4><%= pluralize restaurant.reviews.count, 'review' %></h4>
-      <h3>Average Rating: <%= star_rating(restaurant.average_rating)%></h3>
+      <h3><%= pluralize restaurant.reviews.count, 'review' %></h3>
+      <h4>Average Rating: <%= star_rating(restaurant.average_rating)%></h4>
       <%= form_for [restaurant, @review] do |f| %>
       <%= f.label :comments %>
       <%= f.text_area :comments %>
       <%= f.label :rating %>
       <%= f.select :rating, 1..5 %>
       <%= f.submit 'Submit Review' %>
-
-<% end %>
+      <% end %>
       <ul>
         <% restaurant.reviews.each do |review| %>
           <li>
@@ -24,6 +30,7 @@
           </li>
         <%end%>
       </ul>
+    </div>
   <% end %>
 <% else %>
   No restaurants yet

@@ -1,12 +1,14 @@
 $(document).ready(function() {
   $('.new_review').on('submit', function(){
     event.preventDefault();
-    $.post($(this).attr('action'), $(this).serialize(), function(response){
+    
+    var siblingList =  $(this).siblings('ul');
 
-      console.log(response)
+    $.post($(this).attr('action'), $(this).serialize(), function(response){
+        var template = $('#review_template').html();
+        var rendered = Mustache.render(template,response);
+        siblingList.prepend(rendered);
 
     }, 'json' );
-
   });
-
 });
