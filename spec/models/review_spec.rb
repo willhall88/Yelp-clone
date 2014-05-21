@@ -15,6 +15,12 @@ describe Review do
       expect(review).to have(1).error_on(:rating)
     end
 
+    it 'should not have a rating less than 1' do
+      review = Review.new(comments: 'it was average!', rating:3)
+
+      expect(review).to have(0).error_on(:rating)
+    end
+
   end
   
 end
