@@ -9,8 +9,10 @@ describe Review do
       expect(review).to have(1).error_on(:rating)
     end
 
-    xit 'should not have a rating less than 1' do
+    it 'should not have a rating less than 1' do
+      review = Review.new(comments: 'it was rubbish!', rating:0)
 
+      expect(review).to have(1).error_on(:rating)
     end
 
   end
