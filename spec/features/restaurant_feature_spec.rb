@@ -20,7 +20,7 @@ end
 
 describe 'creating a restaurant' do
   it 'adds it to the restaurants index' do
-    visit '/restaurants/new'
+    visit '/restaurants'
     fill_in 'Name', with:'Mcdonalds'
     fill_in 'Address', with: 'somewhere'
     fill_in 'Cuisine', with: 'burgers'
@@ -31,7 +31,7 @@ describe 'creating a restaurant' do
   end
 
   it 'with invalid data it shows an error' do
-    visit '/restaurants/new'
+    visit '/restaurants'
     fill_in 'Name', with:''
     fill_in 'Address', with: ''
     fill_in 'Cuisine', with: ''

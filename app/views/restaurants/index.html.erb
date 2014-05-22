@@ -14,7 +14,8 @@
 
   <h1>Welp</h1>
   <%= link_to "Add a new restaurant", new_restaurant_path %>
-
+  <%= render 'form' %>
+  
   <% if @restaurants.any? %>
     <% @restaurants.all.each do |restaurant| %>
       <div class='restaurant' data-id="<%= restaurant.id %>">
