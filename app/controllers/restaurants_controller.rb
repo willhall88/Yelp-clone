@@ -14,7 +14,7 @@ class RestaurantsController < ApplicationController
     @restaurant = Restaurant.new(params[:restaurant].permit(:name, :address, :cuisine))
     
     if @restaurant.save
-      redirect_to '/restaurants'
+      render 'create', content_type: :json 
     else
       render ('new')
     end

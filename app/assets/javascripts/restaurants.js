@@ -1,10 +1,11 @@
 $(document).ready(function() {
-  submit_review();
+  submitReview();
+  createRestaurant();
 
 
 });
 
-function submit_review(){
+function submitReview(){
 
     disableButton('.new_review', function(form){
         $.post($(form).attr('action'), $(form).serialize(), function(response){
@@ -22,13 +23,23 @@ function submit_review(){
     });   
 };
 
-function create_restaurant(){
-   
+function createRestaurant(){
+
+    disableButton('.new_restaurant', function(form){
+        $.post($(form).attr('action'), $(form).serialize(), function(response){
+            var template = $('#ajax_restaurant').html();
+            var rendered = Mustache.render(template, response);
+
+            $('.restaurant-list').prepend(rendered);
+         
+        }, 'json' );
+
+    });
 };
 
 function disableButton(className, callback) {
     $(className).on('submit', function(event){
         event.preventDefault();
         callback(this);
-    })
-}
+    });
+};
