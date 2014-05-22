@@ -57,6 +57,22 @@
       <address class="address">{{ address }}</address>
       <a href="/restaurants/{{id}}/edit">Edit {{name}}</a>
       <a data-confirm="you sure?" data-method="delete" href="/restaurants/{{id}}" rel="nofollow">Delete NOW</a>
+      <h3>0 reviews</h3>
+      <h4>Average Rating: N/A</h4>
+
+      <form accept-charset="UTF-8" action="/restaurants/{{ id }}/reviews" class="new_review" id="new_review" method="post">
+      
+        <label for="review_comments">Comments</label>
+        <textarea id="review_comments" name="review[comments]"></textarea>
+        <label for="review_rating">Rating</label>
+        <select id="review_rating" name="review[rating]"><option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+        </select>
+        <input name="commit" type="submit" value="Submit Review">
+      </form>
     </div>
   </template>
 </body>

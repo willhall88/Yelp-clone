@@ -1,8 +1,6 @@
 $(document).ready(function() {
   submitReview();
   createRestaurant();
-
-
 });
 
 function submitReview(){
@@ -31,14 +29,14 @@ function createRestaurant(){
             var rendered = Mustache.render(template, response);
 
             $('.restaurant-list').prepend(rendered);
-         
+            
         }, 'json' );
 
     });
 };
 
 function disableButton(className, callback) {
-    $(className).on('submit', function(event){
+    $('body').on('submit', className, function(event){
         event.preventDefault();
         callback(this);
     });
