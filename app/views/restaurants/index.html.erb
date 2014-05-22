@@ -17,7 +17,7 @@
 
   <% if @restaurants.any? %>
     <% @restaurants.all.each do |restaurant| %>
-      <div class='restaurant'>
+      <div class='restaurant' data-id="<%= restaurant.id %>">
         <span class="name"><%= restaurant.name %> </span>   
         <span class="cuisine"><%= restaurant.cuisine %></span>
         <address class="address"><%= restaurant.address %></address>
