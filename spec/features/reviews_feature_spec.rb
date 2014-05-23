@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe 'writing reviews' do 
-  before  { Restaurant.create(name: 'Nandos', address: 'an address', cuisine: 'chicken')}
+  before(:each)  { Restaurant.create(name: 'Nandos', address: 'an address', cuisine: 'chicken')}
     
   specify 'restaurant begins with no reviews' do
     visit '/restaurants'
@@ -10,7 +10,6 @@ describe 'writing reviews' do
   
   it 'adds the review to the restaurant', js: true do
     visit '/restaurants'
-
     fill_in 'Comments', with: 'nice friendly atmosphere'
     select '4', from: 'Rating'
     click_button 'Submit Review'
